@@ -1,0 +1,7 @@
+.card-div{
+    min-height: 100vh;
+    background-color: aqua !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
