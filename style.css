@@ -1,7 +1,36 @@
 .card-div{
-    min-height: 100vh;
+    min-height: calc(100vh - 50px);
     background-color: aqua !important;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-image: url(img/bg2.jpg);
+    background-size: cover;
+}
+
+.card{
+    min-width: 30em !important;
+    border: none;
+    align-items: center;
+}
+
+.card ul{
+    width: 90%;
+}
+.card li{
+    border-width: 1px !important;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.next{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-top: 1px solid rgba(0,0,0, 0.1);
+    width: 90%;
+
 }
