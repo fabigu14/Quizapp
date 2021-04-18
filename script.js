@@ -1,6 +1,6 @@
 let questions = [
     {
-        "question": "Wie heißt die Haupstadt von NRW",
+        "question": "Wie heißt die Haupstadt von NRW?",
         "answer_1": "Hamburg",
         "answer_2": "Düsseldorf",
         "answer_3": "Dortmund",
@@ -8,7 +8,7 @@ let questions = [
         "solution": 2
     },
     {
-        "question": "Wie viele ms ergeben eine Sekunde",
+        "question": "Wie viele ms ergeben eine Sekunde?",
         "answer_1": "3600",
         "answer_2": "100",
         "answer_3": "1000",
@@ -24,7 +24,7 @@ let questions = [
         "solution": 4
     },
     {
-    "question": "Wer gewann in der Saison 19/20 die Champions League",
+    "question": "Wer gewann in der Saison 19/20 die Champions League?",
         "answer_1": "FC Bayern München",
         "answer_2": "Manchester United",
         "answer_3": "AS Rom",
@@ -40,3 +40,24 @@ let questions = [
         "solution": 2
     }
 ];
+
+let currentQuestionIndex = 0;
+
+function init(){
+    document.getElementById('totalQuestions').innerHTML = questions.length;
+    
+    showQuestion();
+}
+
+function showQuestion(){
+
+    document.getElementById('currentQuestion').innerHTML = currentQuestionIndex + 1;
+
+    let currentQuestion = questions[currentQuestionIndex];
+
+    document.getElementById('question').innerHTML = currentQuestion['question'];
+    document.getElementById('answer_1').innerHTML = currentQuestion['answer_1'];
+    document.getElementById('answer_2').innerHTML = currentQuestion['answer_2'];
+    document.getElementById('answer_3').innerHTML = currentQuestion['answer_3'];
+    document.getElementById('answer_4').innerHTML = currentQuestion['answer_4'];
+}
