@@ -61,3 +61,13 @@ function showQuestion(){
     document.getElementById('answer_3').innerHTML = currentQuestion['answer_3'];
     document.getElementById('answer_4').innerHTML = currentQuestion['answer_4'];
 }
+
+function nextQuestion(){
+
+    currentQuestionIndex++;
+
+    if(currentQuestionIndex + 1 <= questions.length){
+        showQuestion();
+    }
+    
+}
