@@ -86,7 +86,10 @@ function checkAnswer(answer){
     else{
         console.log('wrong');
         document.getElementById(answer).classList.add('wrong-answer');
+        document.getElementById(rightAnswer).classList.add('right-answer');
     }
+
+    lockAnwers();
 }
 
 function removeHighlight(){
@@ -98,4 +101,10 @@ function removeHighlight(){
     document.getElementById('answer_3').classList.remove('wrong-answer');
     document.getElementById('answer_4').classList.remove('right-answer');
     document.getElementById('answer_4').classList.remove('wrong-answer');
+    document.getElementById('overlay').classList.add('hide-element');
+}
+
+function lockAnwers(){
+
+    document.getElementById('overlay').classList.remove('hide-element');
 }

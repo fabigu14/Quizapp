@@ -12,6 +12,7 @@
     min-width: 30em !important;
     border: none !important;
     align-items: center;
+    position: relative;
 }
 
 .card ul{
@@ -22,6 +23,18 @@
     margin-top: 10px;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.overlay{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    
+}
+
+.hide-element{
+    display: none;
 }
 
 .next{
