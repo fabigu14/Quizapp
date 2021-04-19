@@ -5,7 +5,7 @@ let questions = [
         "answer_2": "Düsseldorf",
         "answer_3": "Dortmund",
         "answer_4": "Bielefeld",
-        "solution": 2
+        "solution": "answer_2"
     },
     {
         "question": "Wie viele ms ergeben eine Sekunde?",
@@ -13,7 +13,7 @@ let questions = [
         "answer_2": "100",
         "answer_3": "1000",
         "answer_4": "10000",
-        "solution": 3
+        "solution": "answer_3"
     },
     {
         "question": "Wie viele Bundesländer hat Deutschland?",
@@ -21,7 +21,7 @@ let questions = [
         "answer_2": "12",
         "answer_3": "15",
         "answer_4": "16",
-        "solution": 4
+        "solution": "answer_4"
     },
     {
     "question": "Wer gewann in der Saison 19/20 die Champions League?",
@@ -29,7 +29,7 @@ let questions = [
         "answer_2": "Manchester United",
         "answer_3": "AS Rom",
         "answer_4": "Real Madrid",
-        "solution": 1
+        "solution": "answer_1"
     },
     {
         "question": "Wo findet man den Arc de Triomphe?",
@@ -37,7 +37,7 @@ let questions = [
         "answer_2": "Paris",
         "answer_3": "Lille",
         "answer_4": "Barcelona",
-        "solution": 2
+        "solution": "answer_2"
     }
 ];
 
@@ -68,6 +68,34 @@ function nextQuestion(){
 
     if(currentQuestionIndex + 1 <= questions.length){
         showQuestion();
+        removeHighlight();
     }
-    
+}
+
+function checkAnswer(answer){
+
+    console.log(answer);
+    let currentQuestion = questions[currentQuestionIndex];
+    let rightAnswer = currentQuestion['solution'];
+    console.log(rightAnswer);
+    if(rightAnswer === answer){
+        console.log('right');
+        document.getElementById(answer).classList.add('right-answer');
+    }
+
+    else{
+        console.log('wrong');
+        document.getElementById(answer).classList.add('wrong-answer');
+    }
+}
+
+function removeHighlight(){
+    document.getElementById('answer_1').classList.remove('right-answer');
+    document.getElementById('answer_1').classList.remove('wrong-answer');
+    document.getElementById('answer_2').classList.remove('right-answer');
+    document.getElementById('answer_2').classList.remove('wrong-answer');
+    document.getElementById('answer_3').classList.remove('right-answer');
+    document.getElementById('answer_3').classList.remove('wrong-answer');
+    document.getElementById('answer_4').classList.remove('right-answer');
+    document.getElementById('answer_4').classList.remove('wrong-answer');
 }

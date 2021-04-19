@@ -34,3 +34,11 @@
     width: 90%;
 
 }
+
+.right-answer{
+    background-color: #69ff46 !important;
+}
+
+.wrong-answer{
+    background-color: #fe5252 !important;
+}
