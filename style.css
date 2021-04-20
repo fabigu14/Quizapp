@@ -21,20 +21,51 @@
 .card li{
     border-width: 1px !important;
     margin-top: 10px;
-    border-radius: 4px;
+    border-radius: 4px !important;
     cursor: pointer;
+}
+
+.card li:hover{
+    background-color: #e8e8e887;
 }
 
 .overlay{
     position: absolute;
     height: 100%;
     width: 100%;
-    z-index: 1;
-    
+    z-index: 1; 
+}
+
+.result{
+    height: 100%;
+    z-index: 5; 
+}
+
+
+.result h2{
+    margin-bottom: 0;
+}
+
+.result img{
+    height: 400px;
+    object-fit: cover;
 }
 
 .hide-element{
-    display: none;
+    display: none !important;
+}
+
+.play-again{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    width: 90%;
+}
+
+.play-again button{
+    margin: 15px 0 5px 0;
 }
 
 .next{

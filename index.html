@@ -24,30 +24,51 @@
         </div>
     </nav>
     <div class="card-div">
-        <div class="card" style="width: 18rem;">
+
+        <div id="card" class="card" style="width: 18rem;">
             <img src="img/question.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-                <p id="question" class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                    content.</p>
+                <p id="question" class="card-text"></p>
             </div>
             <div class="card" style="width: 18rem;">
+
                 <div id="overlay" class="overlay hide-element"></div>
                 <ul class="list-group list-group-flush">
-                  <li onclick="checkAnswer('answer_1')" id="answer_1" class="list-group-item"></li>
-                  <li onclick="checkAnswer('answer_2')" id="answer_2" class="list-group-item"></li>
-                  <li onclick="checkAnswer('answer_3')" id="answer_3" class="list-group-item"></li>
-                  <li onclick="checkAnswer('answer_4')" id="answer_4" class="list-group-item"></li>
+                    <li onclick="checkAnswer('answer_1')" id="answer_1" class="list-group-item"></li>
+                    <li onclick="checkAnswer('answer_2')" id="answer_2" class="list-group-item"></li>
+                    <li onclick="checkAnswer('answer_3')" id="answer_3" class="list-group-item"></li>
+                    <li onclick="checkAnswer('answer_4')" id="answer_4" class="list-group-item"></li>
                 </ul>
+
+            </div>
+            <div class="next">
+                <div>Frage <b id="currentQuestion"></b> von <b id="totalQuestions"></b></div>
+                <div><button onclick="nextQuestion()" id="btn-continue" class="btn btn-primary" type="button"
+                        disabled>Weiter</button></div>
+            </div>
+        </div>
+        <div id="result" class="result hide-element">
+            <div class="card" style="width: 18rem;">
+                <img src="img/trophy.png"  class="card-img-top" alt="img of winner trophy">
+                <div class="card-body">
+                    <!-- <p id="question" class="card-text"></p> -->
+                    <h2>Quiz beendet!</h2>
+                </div>
                 
-              </div>
-              <div class="next">
-                <div>Frage <b id="currentQuestion"></b>  von <b id="totalQuestions"></b></div>
-                <div><button onclick="nextQuestion()" class="btn btn-primary" type="button">Weiter</button></div>
+                <div class="play-again">
+                    <div>Du hast <b id="rightAnswers"></b> von <b id="total"></b> Fragen richtig beantwortet!</div>
+                    <div>
+                        <button onclick="restart()" id="btn-continue" class="btn btn-primary" type="button">Erneut
+                            spielen
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
         
+
     </div>
-    
+
 </body>
 
 </html>

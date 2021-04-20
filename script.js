@@ -24,7 +24,7 @@ let questions = [
         "solution": "answer_4"
     },
     {
-    "question": "Wer gewann in der Saison 19/20 die Champions League?",
+        "question": "Wer gewann in der Saison 19/20 die Champions League?",
         "answer_1": "FC Bayern München",
         "answer_2": "Manchester United",
         "answer_3": "AS Rom",
@@ -42,14 +42,16 @@ let questions = [
 ];
 
 let currentQuestionIndex = 0;
+let rightAnswers = 0;
 
-function init(){
+function init() {
     document.getElementById('totalQuestions').innerHTML = questions.length;
-    
+
     showQuestion();
 }
 
-function showQuestion(){
+//sets and shows Question and answers
+function showQuestion() {
 
     document.getElementById('currentQuestion').innerHTML = currentQuestionIndex + 1;
 
@@ -62,37 +64,48 @@ function showQuestion(){
     document.getElementById('answer_4').innerHTML = currentQuestion['answer_4'];
 }
 
-function nextQuestion(){
+//moves on to next question through onClick()
+function nextQuestion() {
 
     currentQuestionIndex++;
 
-    if(currentQuestionIndex + 1 <= questions.length){
+    if (currentQuestionIndex + 1 <= questions.length) {
         showQuestion();
         removeHighlight();
     }
 }
 
-function checkAnswer(answer){
+//checks wether the answer oof user is correct
+function checkAnswer(answer) {
 
-    console.log(answer);
     let currentQuestion = questions[currentQuestionIndex];
     let rightAnswer = currentQuestion['solution'];
-    console.log(rightAnswer);
-    if(rightAnswer === answer){
-        console.log('right');
+
+    if (rightAnswer === answer) {
+
         document.getElementById(answer).classList.add('right-answer');
+        rightAnswers++;
     }
 
-    else{
-        console.log('wrong');
+    else {
+
         document.getElementById(answer).classList.add('wrong-answer');
         document.getElementById(rightAnswer).classList.add('right-answer');
     }
-
     lockAnwers();
+
+
+    if (currentQuestionIndex + 1 === questions.length) {
+
+        showResult();
+    }
+    else {
+        document.getElementById('btn-continue').disabled = false;
+    }
 }
 
-function removeHighlight(){
+//removes the red and green background
+function removeHighlight() {
     document.getElementById('answer_1').classList.remove('right-answer');
     document.getElementById('answer_1').classList.remove('wrong-answer');
     document.getElementById('answer_2').classList.remove('right-answer');
@@ -102,9 +115,36 @@ function removeHighlight(){
     document.getElementById('answer_4').classList.remove('right-answer');
     document.getElementById('answer_4').classList.remove('wrong-answer');
     document.getElementById('overlay').classList.add('hide-element');
+    document.getElementById('btn-continue').disabled = true;
 }
 
-function lockAnwers(){
+//overlay is set and makes sure that you can't click on the answers anymore
+function lockAnwers() {
 
     document.getElementById('overlay').classList.remove('hide-element');
+}
+
+function unlockAnwers() {
+
+    document.getElementById('overlay').classList.add('hide-element');
+}
+
+function showResult() {
+    setTimeout(function () {
+        document.getElementById('result').classList.remove('hide-element');
+        document.getElementById('card').classList.add('hide-element');
+        document.getElementById('rightAnswers').innerHTML = rightAnswers;
+        document.getElementById('total').innerHTML = questions.length;
+    }, 2000
+    )
+}
+
+function restart() {
+    currentQuestionIndex = 0;
+    rightAnswers = 0;
+    document.getElementById('result').classList.add('hide-element');
+    document.getElementById('card').classList.remove('hide-element');
+    removeHighlight();
+    unlockAnwers();
+    init();
 }
