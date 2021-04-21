@@ -43,6 +43,8 @@ let questions = [
 
 let currentQuestionIndex = 0;
 let rightAnswers = 0;
+let AUDIO_SUCCED = new Audio('audio/success.mp3');
+let AUDIO_WRONG = new Audio('audio/wrong.mp3');
 
 function init() {
     document.getElementById('totalQuestions').innerHTML = questions.length;
@@ -72,23 +74,24 @@ function nextQuestion() {
     if (currentQuestionIndex + 1 <= questions.length) {
         showQuestion();
         removeHighlight();
+        showProgress();
     }
 }
 
 //checks wether the answer oof user is correct
 function checkAnswer(answer) {
-
+       
     let currentQuestion = questions[currentQuestionIndex];
     let rightAnswer = currentQuestion['solution'];
 
     if (rightAnswer === answer) {
-
+        AUDIO_SUCCED.play();
         document.getElementById(answer).classList.add('right-answer');
         rightAnswers++;
     }
 
     else {
-
+        AUDIO_WRONG.play();
         document.getElementById(answer).classList.add('wrong-answer');
         document.getElementById(rightAnswer).classList.add('right-answer');
     }
@@ -96,12 +99,14 @@ function checkAnswer(answer) {
 
 
     if (currentQuestionIndex + 1 === questions.length) {
-
+        currentQuestionIndex++;
+        showProgress();
         showResult();
     }
     else {
         document.getElementById('btn-continue').disabled = false;
     }
+    
 }
 
 //removes the red and green background
@@ -147,4 +152,13 @@ function restart() {
     removeHighlight();
     unlockAnwers();
     init();
+}
+
+function showProgress(){
+    console.log(currentQuestionIndex);
+    let progressInPercent = Math.round((currentQuestionIndex) / questions.length * 100);
+    console.log(progressInPercent);
+    document.getElementById('progress').innerHTML = `${progressInPercent}%`
+    document.getElementById('progress').style = `width: ${progressInPercent}%`
+
 }
