@@ -80,24 +80,22 @@ function nextQuestion() {
 
 //checks wether the answer oof user is correct
 function checkAnswer(answer) {
-       
+
     let currentQuestion = questions[currentQuestionIndex];
     let rightAnswer = currentQuestion['solution'];
 
     if (rightAnswer === answer) {
-        AUDIO_SUCCED.play();
-        document.getElementById(answer).classList.add('right-answer');
-        rightAnswers++;
+        playSucced();
     }
 
     else {
-        AUDIO_WRONG.play();
-        document.getElementById(answer).classList.add('wrong-answer');
-        document.getElementById(rightAnswer).classList.add('right-answer');
+       playWrong();
     }
+    checkEndOfGame();
     lockAnwers();
+}
 
-
+function checkEndOfGame(){
     if (currentQuestionIndex + 1 === questions.length) {
         currentQuestionIndex++;
         showProgress();
@@ -106,8 +104,20 @@ function checkAnswer(answer) {
     else {
         document.getElementById('btn-continue').disabled = false;
     }
-    
 }
+
+function playSucced() {
+    AUDIO_SUCCED.play();
+    document.getElementById(answer).classList.add('right-answer');
+    rightAnswers++;
+}
+
+function playWrong(){
+    AUDIO_WRONG.play();
+    document.getElementById(answer).classList.add('wrong-answer');
+    document.getElementById(rightAnswer).classList.add('right-answer');
+}
+
 
 //removes the red and green background
 function removeHighlight() {
@@ -129,11 +139,13 @@ function lockAnwers() {
     document.getElementById('overlay').classList.remove('hide-element');
 }
 
+//removes the overlay for the next Question
 function unlockAnwers() {
 
     document.getElementById('overlay').classList.add('hide-element');
 }
 
+//shows a new element with the result of the game
 function showResult() {
     setTimeout(function () {
         document.getElementById('result').classList.remove('hide-element');
@@ -144,6 +156,8 @@ function showResult() {
     )
 }
 
+
+//resets all stats and restarts the game
 function restart() {
     currentQuestionIndex = 0;
     rightAnswers = 0;
@@ -154,10 +168,8 @@ function restart() {
     init();
 }
 
-function showProgress(){
-    console.log(currentQuestionIndex);
+function showProgress() {
     let progressInPercent = Math.round((currentQuestionIndex) / questions.length * 100);
-    console.log(progressInPercent);
     document.getElementById('progress').innerHTML = `${progressInPercent}%`
     document.getElementById('progress').style = `width: ${progressInPercent}%`
 
